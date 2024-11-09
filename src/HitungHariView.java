@@ -1,4 +1,6 @@
 
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
@@ -53,7 +55,6 @@ private void UpdteCCmbx(){
 }
 private void updteCCmbxSpnnr(){
     calendar.getYearChooser().setYear((int) inputTahun.getValue());
- jLabel3.setText("YEY");
 }
 private void updteCCmbxSpinCal(){
   inputBulan.setSelectedIndex(calendar.getMonthChooser().getMonth());
@@ -83,7 +84,6 @@ private void updteCCmbxSpinCal(){
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,6 +137,12 @@ private void updteCCmbxSpinCal(){
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setLayout(new java.awt.GridBagLayout());
+
+        calendar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                calendarKeyReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -186,6 +192,19 @@ private void updteCCmbxSpinCal(){
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(5, 23, 0, 0);
         jPanel4.add(jLabel2, gridBagConstraints);
+
+        inputTahun.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                inputTahunStateChanged(evt);
+            }
+        });
+        inputTahun.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                inputTahunCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 13;
         gridBagConstraints.gridy = 1;
@@ -229,19 +248,17 @@ private void updteCCmbxSpinCal(){
         gridBagConstraints.insets = new java.awt.Insets(28, 0, 0, 0);
         jPanel2.add(jPanel5, gridBagConstraints);
 
-        jLabel3.setText("jLabel3");
-        jPanel2.add(jLabel3, new java.awt.GridBagConstraints());
-
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void hitungHari() {
+        
          int tahun = (int) inputTahun.getValue();
         int bulan = inputBulan.getSelectedIndex(); // Bulan dimulai dari 1 hingga 12
-        if (bulan == 0) {
-            JOptionPane.showMessageDialog(null, "Silahkan Pilih Bulan!","Gagal Hitung Hari!",0);
+        if (tahun == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan Atur Tahun!","Gagal Hitung Hari!",0);
         }
         // Menghitung jumlah hari dalam bulan yang dipilih
         YearMonth yearMonth = YearMonth.of(tahun, bulan);
@@ -287,6 +304,19 @@ private void updteCCmbxSpinCal(){
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void calendarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_calendarKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_calendarKeyReleased
+
+    private void inputTahunStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_inputTahunStateChanged
+        // TODO add your handling code here
+        
+    }//GEN-LAST:event_inputTahunStateChanged
+
+    private void inputTahunCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_inputTahunCaretPositionChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputTahunCaretPositionChanged
+
     /**
      * @param args the command line arguments
      */
@@ -331,7 +361,6 @@ private void updteCCmbxSpinCal(){
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
