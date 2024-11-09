@@ -116,6 +116,11 @@ private void updteCCmbxSpinCal(){
         jPanel2.add(jButton1, gridBagConstraints);
 
         jButton2.setText("Ulang");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -245,6 +250,7 @@ private void updteCCmbxSpinCal(){
         gridBagConstraints.gridwidth = 10;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
+        gridBagConstraints.weightx = 20.0;
         gridBagConstraints.insets = new java.awt.Insets(28, 0, 0, 0);
         jPanel2.add(jPanel5, gridBagConstraints);
 
@@ -316,6 +322,13 @@ private void updteCCmbxSpinCal(){
     private void inputTahunCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_inputTahunCaretPositionChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_inputTahunCaretPositionChanged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        inputBulan.setSelectedIndex(0);
+        inputTahun.setValue(0);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
